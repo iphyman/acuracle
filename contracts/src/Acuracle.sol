@@ -29,7 +29,7 @@ contract Acuracle is Owned, IAcuracle, IAcuracleFeed {
     /**
      * @dev store the oracle decimal precision
      */
-    uint8 public decimals;
+    uint8 public constant decimals = 8;
 
     /**
      * @dev store the feed symbol name
@@ -39,7 +39,7 @@ contract Acuracle is Owned, IAcuracle, IAcuracleFeed {
     /**
      * @dev How long to wait for oracles before timeout on rounds
      */
-    uint256 internal constant ROUND_EXPIRY = 5 minutes;
+    uint256 internal constant ROUND_EXPIRY = 2 minutes;
 
     /**
      * @dev keep track of oracle address (Acurast processors address)
@@ -56,12 +56,7 @@ contract Acuracle is Owned, IAcuracle, IAcuracleFeed {
      */
     mapping(uint64 roundId => RoundSubmission) private _submissions;
 
-    constructor(
-        address _owner,
-        uint8 _decimals,
-        string memory _name
-    ) Owned(_owner) {
-        decimals = _decimals;
+    constructor(address _owner, string memory _name) Owned(_owner) {
         name = _name;
     }
 
@@ -170,6 +165,31 @@ contract Acuracle is Owned, IAcuracle, IAcuracleFeed {
         )
     {
         (answer, roundId, startedAt, updatedAt) = _getRoundData(_roundId);
+    }
+
+    /// @inheritdoc IAcuracleFeed
+    function getRoundDataWithMeta()
+        external
+        view
+        override
+        returns (
+            int256 answer,
+            uint64 processors,
+            string memory description,
+            uint8 decimal,
+            uint64 updatedAt
+        )
+    {
+        RoundSubmission storage round = _submissions[latestRoundId];
+
+        if (round.numerator > 0 && round.denominator > 0) {
+            answer = round.numerator / round.denominator;
+        }
+
+        processors = uint64(_oracleAddresses.length);
+        description = name;
+        decimal = decimals;
+        updatedAt = round.updatedAt;
     }
 
     /**

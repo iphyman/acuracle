@@ -34,4 +34,19 @@ interface IAcuracleFeed {
             uint64 startedAt,
             uint64 updatedAt
         );
+
+    /**
+     * @dev Get the oracle latest round data with meta data for frontend use,
+     * consumers can ensure no stale data by inspecting the updatedAt param
+     */
+    function getRoundDataWithMeta()
+        external
+        view
+        returns (
+            int256 answer,
+            uint64 processors,
+            string memory description,
+            uint8 decimal,
+            uint64 updatedAt
+        );
 }

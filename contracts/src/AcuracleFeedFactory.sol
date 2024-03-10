@@ -20,12 +20,11 @@ contract AcuracleFeedFactory is IAcuracleFeedFactory, Owned {
     constructor() Owned(msg.sender) {}
 
     /// @inheritdoc IAcuracleFeedFactory
-    function createFeed(uint8 decimals, string memory name) external override {
+    function createFeed(string memory name) external override {
         uint256 nonce = _accountFeeds[msg.sender].nonce;
         address feed = address(
             new Acuracle{salt: keccak256(abi.encode(msg.sender, nonce))}(
                 msg.sender,
-                decimals,
                 name
             )
         );

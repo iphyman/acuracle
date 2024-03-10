@@ -11,10 +11,9 @@ interface IAcuracleFeedFactory {
     /**
      * @dev Allow anyone to easily deploy a new price feed
      *
-     * @param decimals the oracle feed decimal
      * @param name the oracle tick symbol or name
      */
-    function createFeed(uint8 decimals, string memory name) external;
+    function createFeed(string memory name) external;
 
     /**
      * @dev Fetch all price feeds deployed by an account

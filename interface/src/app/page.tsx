@@ -47,6 +47,8 @@ export default function Home() {
             Learn more
           </Button>
           <Button
+            as="a"
+            href="/feeds"
             w="16rem"
             colorScheme="gray"
             h="4rem"
