@@ -1,6 +1,6 @@
 "use client";
 
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { config, projectId } from "@app/config";
 import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -16,6 +16,13 @@ createWeb3Modal({
   enableAnalytics: true,
 });
 
+const themeConfig = {
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+};
+
+const theme = extendTheme({ themeConfig });
+
 export function Providers({
   children,
   initialState,
@@ -24,7 +31,7 @@ export function Providers({
   initialState?: State;
 }) {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <WagmiProvider config={config} initialState={initialState}>
         <QueryClientProvider client={queryClient}>
           {children}
