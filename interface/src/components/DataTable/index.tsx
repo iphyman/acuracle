@@ -179,48 +179,86 @@ export default function DataTable() {
           <Thead>
             <Tr>
               <Th padding="8px 12px 8px 24px">
-                <Text textAlign="left" fontSize="14px" fontWeight={600}>
+                <Text
+                  textAlign="left"
+                  fontSize="14px"
+                  fontWeight={600}
+                  color="gray.400"
+                >
                   Feed
                 </Text>
               </Th>
               <Th padding="8px 12px">
-                <Text textAlign="left" fontSize="14px" fontWeight={600}>
+                <Text
+                  textAlign="left"
+                  fontSize="14px"
+                  fontWeight={600}
+                  color="gray.400"
+                >
                   Network
                 </Text>
               </Th>
               <Th padding="8px 12px">
-                <Text textAlign="left" fontSize="14px" fontWeight={600}>
+                <Text
+                  textAlign="left"
+                  fontSize="14px"
+                  fontWeight={600}
+                  color="gray.400"
+                >
                   Answer
                 </Text>
               </Th>
               <Th padding="8px 12px">
-                <Text textAlign="left" fontSize="14px" fontWeight={600}>
+                <Text
+                  textAlign="left"
+                  fontSize="14px"
+                  fontWeight={600}
+                  color="gray.400"
+                >
                   Processors
                 </Text>
               </Th>
               <Th padding="8px 12px">
-                <Text textAlign="left" fontSize="14px" fontWeight={600}>
+                <Text
+                  textAlign="left"
+                  fontSize="14px"
+                  fontWeight={600}
+                  color="gray.400"
+                >
                   Contract Address
                 </Text>
               </Th>
               <Th padding="8px 12px">
-                <Text textAlign="left" fontSize="14px" fontWeight={600}>
+                <Text
+                  textAlign="left"
+                  fontSize="14px"
+                  fontWeight={600}
+                  color="gray.400"
+                >
                   Actions
                 </Text>
               </Th>
             </Tr>
           </Thead>
           <Tbody>
-            {data?.map((feed, key) => (
-              <Row
-                feed={feed}
-                addProcessor={onOpenAddP}
-                removeProcessor={onOpenRem}
-                addSource={onOpenAddSrc}
-                onSelect={setSelectedFeed}
-                key={key}
-              />
-            ))}
+            {data ? (
+              data?.map((feed, key) => (
+                <Row
+                  feed={feed}
+                  addProcessor={onOpenAddP}
+                  removeProcessor={onOpenRem}
+                  addSource={onOpenAddSrc}
+                  onSelect={setSelectedFeed}
+                  key={key}
+                />
+              ))
+            ) : (
+              <Tr>
+                <Td colSpan={6} textAlign="center">
+                  No Price Feed Found
+                </Td>
+              </Tr>
+            )}
           </Tbody>
         </Table>
       </Box>

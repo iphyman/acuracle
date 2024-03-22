@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, HStack, Link } from "@chakra-ui/react";
-import { FaDiscord, FaGithub } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 export const Navbar = () => {
   return (
@@ -9,7 +9,7 @@ export const Navbar = () => {
       <HStack w="full" h="full" px="4rem" justifyContent="space-between">
         <Link
           href="/"
-          fontSize="2rem"
+          fontSize={{ base: "1rem", md: "2rem" }}
           color="white"
           fontWeight={700}
           _hover={{ textDecoration: "none" }}

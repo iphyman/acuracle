@@ -16,12 +16,21 @@ createWeb3Modal({
   enableAnalytics: true,
 });
 
+const styles = {
+  global: {
+    body: {
+      bg: "#1A202C",
+      color: "#EDF2F7",
+    },
+  },
+};
+
 const themeConfig = {
   initialColorMode: "dark",
   useSystemColorMode: false,
 };
 
-const theme = extendTheme({ themeConfig });
+const theme = extendTheme({ config: themeConfig, styles });
 
 export function Providers({
   children,

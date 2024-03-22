@@ -3,6 +3,7 @@
 import DataTable from "@app/components/DataTable";
 import CreateFeedModal from "@app/components/Modals/CreateFeedModal";
 import {
+  chakra,
   Box,
   Button,
   HStack,
@@ -29,7 +30,9 @@ export default function Feeds() {
                 </Text>
               </HStack>
               <Button colorScheme="gray" leftIcon={<FaPlus />} onClick={onOpen}>
-                Create Feed
+                <chakra.span display={{ base: "none", md: "block" }}>
+                  Create Feed
+                </chakra.span>
               </Button>
             </HStack>
             <DataTable />

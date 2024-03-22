@@ -22,7 +22,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className} color="#EDF2F7">
+      <body className={inter.className}>
         <Providers initialState={initialState}>
           <Navbar />
           {children}

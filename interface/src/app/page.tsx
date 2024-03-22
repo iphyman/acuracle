@@ -32,7 +32,13 @@ export default function Home() {
           Acurast provides a secure, reliable and decentralized serverless cloud
           compute to power endless unique smart contract use cases.
         </Text>
-        <HStack w="full" mt="2rem" justifyContent="center" spacing="5">
+        <HStack
+          w="full"
+          my="2rem"
+          justifyContent="center"
+          spacing="5"
+          flexDirection={{ base: "column", md: "row" }}
+        >
           <Button
             as="a"
             href="https://acurast.com/"
